@@ -638,7 +638,7 @@ int main(int argc, char** argv){
     	previous_N = 5;
 
         printf("%d %d\n",max_prot_radius,min_prot_radius);
-
+        
         for (r=max_prot_radius; r>min_prot_radius-1; r--){
         	float float_r = r;
         	float float_R = R;
@@ -660,11 +660,16 @@ int main(int argc, char** argv){
             result_N[R-1][r-1][i] = N-1;
             
         	}
+
+        	previous_N = count_N;
+        	count_N = N;
+        	if (count_N<5){
+        		count_N=5;
+        	}
         }
         
         
-        previous_N = count_N;
-        count_N = N;
+        
         
         count++;
         
