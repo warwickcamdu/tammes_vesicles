@@ -44,7 +44,9 @@ def plot_results(filename):
 
     axes.xaxis.set_major_locator(majorLocator)
     axes.set_xticklabels(labels)
-    plt.savefig('results_gpcr.png')
+    axes.set_xlabel(u"Vesicle radius (nm)")
+    axes.set_ylabel(u"Number of proteins")
+    plt.savefig("results_gpcr.png")
     plt.show()
 
 

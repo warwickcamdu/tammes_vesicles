@@ -602,16 +602,16 @@ float tammes() {
 
 
 int main(int argc, char** argv){
-    const int myrepeats = 10;
+    const int myrepeats = 1;
     
     
     const int min_ves_radius = 1;
-    const int max_ves_radius = 3;
-    const int ves_range = max_ves_radius - min_ves_radius + 1;
+    const int max_ves_radius = 51;
+    const int ves_range = (max_ves_radius - min_ves_radius + 1)/5;
 
     const int min_prot_radius = 1;
-    const int max_prot_radius = 3;
-    const int prot_range = max_prot_radius - min_prot_radius + 1;
+    const int max_prot_radius = 51;
+    const int prot_range = (max_prot_radius - min_prot_radius + 1)/2;
     int count = 0;
     int r = 0;
     int count_N = 5;
@@ -634,20 +634,20 @@ int main(int argc, char** argv){
     FILE *fp;
     fp = fopen("/home/erick/results.csv", "w");
     fprintf(fp, "vesicle radius,protein radius,repeat,packing\n");
-    for (R = min_ves_radius; R< max_ves_radius+1; R++){
+    for (R = min_ves_radius; R< max_ves_radius+1; R=R+5){
     	count_N = 5;
     	previous_N = 5;
 
         printf("%d %d\n",max_prot_radius,min_prot_radius);
 
-        for (r=max_prot_radius; r>min_prot_radius-1; r--){
+        for (r=max_prot_radius; r>min_prot_radius-1; r= r-2){
         	float float_r = r;
         	float float_R = R;
         	float equiv_r = float_r/float_R ;
-        	printf("vesicle R = %d protein R = %d equiv_r = %f\n", R, r, equiv_r);
+        	printf("vesicle R = %d protein R = %d equiv_r = %f\n", R, r, equiv_r);  //change to step 5 vesicle, step 2 protein, single repeat, do not repeat ratios, max vesicle radius 50
         	
         	for(i=0; i<myrepeats; i++){
-            printf("repeat %d, count_N %d previous_N %d\n", i,count_N, previous_N);
+            printf("repeat %d, count_N %d previous_N %d\n", i,count_N, previous_N); 
             for (N=count_N + (count_N - previous_N - 5); N<2500; N++){
             	printf("%d\n",N );
                 float curr_r = tammes();
